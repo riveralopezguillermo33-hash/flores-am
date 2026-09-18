@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti, con flores amarillas 💛</title>
+  <meta name="description" content="Una experiencia especial creada para ti en el Día de las Flores Amarillas." />
+  <meta property="og:title" content="Para ti, con flores amarillas 💛" />
+  <meta property="og:description" content="Porque algunas personas merecen recibir un poquito de sol en forma de flores." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       PANTALLA DE BIENVENIDA
+  ══════════════════════════════════════════════ -->
+  <div id="welcome-screen" role="dialog" aria-label="Pantalla de bienvenida">
+    <canvas id="welcome-canvas" aria-hidden="true"></canvas>
+
+    <!-- Viñeta de luz central -->
+    <div class="welcome-vignette" aria-hidden="true"></div>
+
+    <div class="welcome-content">
+      <div class="welcome-ornament" aria-hidden="true">
+        <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="10" x2="45" y2="10" stroke="rgba(253,233,138,0.4)" stroke-width="0.5"/>
+          <circle cx="55" cy="10" r="3" fill="rgba(253,233,138,0.6)"/>
+          <circle cx="60" cy="10" r="5" fill="rgba(253,233,138,0.8)"/>
+          <circle cx="65" cy="10" r="3" fill="rgba(253,233,138,0.6)"/>
+          <line x1="75" y1="10" x2="120" y2="10" stroke="rgba(253,233,138,0.4)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <p class="welcome-line-1">Hay días que se quedan grabados en el corazón...</p>
+      <p class="welcome-line-2">Y hoy, sin duda, pensé en ti.</p>
+      <div class="welcome-ornament welcome-ornament--bottom" aria-hidden="true">
+        <svg viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="10" x2="45" y2="10" stroke="rgba(253,233,138,0.4)" stroke-width="0.5"/>
+          <circle cx="55" cy="10" r="3" fill="rgba(253,233,138,0.6)"/>
+          <circle cx="60" cy="10" r="5" fill="rgba(253,233,138,0.8)"/>
+          <circle cx="65" cy="10" r="3" fill="rgba(253,233,138,0.6)"/>
+          <line x1="75" y1="10" x2="120" y2="10" stroke="rgba(253,233,138,0.4)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <button id="btn-discover" aria-label="Descubrir mi sorpresa">
+        <span class="btn-text">Descubrir mi sorpresa</span>
+        <span class="btn-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════════
+       PÁGINA PRINCIPAL
+  ══════════════════════════════════════════════ -->
+  <div id="main-page" aria-hidden="true">
+
+    <!-- NAVEGACIÓN -->
+    <nav id="navbar" role="navigation" aria-label="Navegación principal">
+      <a href="#hero" class="nav-brand" aria-label="Inicio">
+        <svg class="nav-brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="16" cy="16" r="5" fill="#d4a017"/>
+          <ellipse cx="16" cy="7" rx="4" ry="6" fill="#f5c842" opacity="0.9"/>
+          <ellipse cx="16" cy="25" rx="4" ry="6" fill="#f5c842" opacity="0.9"/>
+          <ellipse cx="7" cy="16" rx="6" ry="4" fill="#fde98a" opacity="0.9"/>
+          <ellipse cx="25" cy="16" rx="6" ry="4" fill="#fde98a" opacity="0.9"/>
+          <ellipse cx="9.5" cy="9.5" rx="4" ry="5.5" fill="#f5c842" opacity="0.8" transform="rotate(-45 9.5 9.5)"/>
+          <ellipse cx="22.5" cy="9.5" rx="4" ry="5.5" fill="#f5c842" opacity="0.8" transform="rotate(45 22.5 9.5)"/>
+          <ellipse cx="9.5" cy="22.5" rx="4" ry="5.5" fill="#fde98a" opacity="0.8" transform="rotate(45 9.5 22.5)"/>
+          <ellipse cx="22.5" cy="22.5" rx="4" ry="5.5" fill="#fde98a" opacity="0.8" transform="rotate(-45 22.5 22.5)"/>
+        </svg>
+        <span class="nav-brand-text">Flores Amarillas</span>
+      </a>
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active" data-section="hero">Inicio</a>
+        <a href="#garden" class="nav-link" data-section="garden">Jardín</a>
+        <a href="#letter" class="nav-link" data-section="letter">Carta</a>
+        <a href="#surprise" class="nav-link" data-section="surprise">Sorpresa</a>
+        <a href="#final" class="nav-link" data-section="final">Final</a>
+      </div>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section id="hero" class="page-view active" aria-label="Sección principal">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-bg-gradient" aria-hidden="true"></div>
+
+      <!-- Flores laterales decorativas -->
+      <div class="hero-side hero-side--left" aria-hidden="true" id="hero-left"></div>
+      <div class="hero-side hero-side--right" aria-hidden="true" id="hero-right"></div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <span class="eyebrow-line"></span>
+          <span class="eyebrow-text" id="hero-date">21 de septiembre</span>
+          <span class="eyebrow-line"></span>
+        </div>
+        <h1 class="hero-title reveal">
+          Feliz Día de las<br />
+          <em>Flores Amarillas</em>
+        </h1>
+        <p class="hero-subtitle reveal">
+          Porque algunas personas merecen recibir<br />
+          un poquito de sol en forma de flores.
+        </p>
+        <div class="hero-cta reveal">
+          <button class="btn-ghost" id="btn-scroll-letter" aria-label="Leer carta">
+            <span>Hay algo que quiero decirte</span>
+            <span class="btn-ghost-dot" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      </div>
+    </section>
+
+    <!-- ── JARDÍN ── -->
+    <section id="garden" class="page-view" aria-label="Jardín interactivo">
+      <div class="garden-bg" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-header reveal">
+          <p class="section-overline">Para ti</p>
+          <h2 class="section-title">Un pequeño jardín</h2>
+          <p class="section-sub">Toca las flores y descubre algo especial</p>
+        </header>
+        <div class="garden-stage" id="garden-grid" aria-label="Jardín de flores interactivas" role="region"></div>
+        <div class="flower-message" id="flower-message" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+
+
+    <!-- ── CARTA ── -->
+    <section id="letter" class="page-view" aria-label="Carta personal">
+      <div class="letter-bg" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-header reveal">
+          <p class="section-overline">Solo para ti</p>
+          <h2 class="section-title">Una carta para ti</h2>
+        </header>
+        <div class="letter-wrapper reveal">
+          <!-- Sombra de profundidad -->
+          <div class="letter-shadow" aria-hidden="true"></div>
+          <article class="letter-card" aria-label="Carta personal">
+            <!-- Textura de papel -->
+            <div class="letter-paper-texture" aria-hidden="true"></div>
+            <!-- Borde dorado superior -->
+            <div class="letter-top-border" aria-hidden="true"></div>
+            <!-- Marca de agua floral -->
+            <div class="letter-watermark" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="30" fill="rgba(245,200,66,0.06)"/>
+                <ellipse cx="100" cy="55" rx="22" ry="35" fill="rgba(245,200,66,0.05)"/>
+                <ellipse cx="100" cy="145" rx="22" ry="35" fill="rgba(245,200,66,0.05)"/>
+                <ellipse cx="55" cy="100" rx="35" ry="22" fill="rgba(245,200,66,0.04)"/>
+                <ellipse cx="145" cy="100" rx="35" ry="22" fill="rgba(245,200,66,0.04)"/>
+              </svg>
+            </div>
+            <div class="letter-inner">
+              <div class="letter-header-deco" aria-hidden="true">
+                <div class="letter-deco-line"></div>
+                <div class="letter-deco-flower">
+                  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="20" r="6" fill="#d4a017"/>
+                    <ellipse cx="20" cy="8" rx="5" ry="8" fill="#f5c842" opacity="0.85"/>
+                    <ellipse cx="20" cy="32" rx="5" ry="8" fill="#f5c842" opacity="0.85"/>
+                    <ellipse cx="8" cy="20" rx="8" ry="5" fill="#fde98a" opacity="0.85"/>
+                    <ellipse cx="32" cy="20" rx="8" ry="5" fill="#fde98a" opacity="0.85"/>
+                    <ellipse cx="11" cy="11" rx="5" ry="7" fill="#f5c842" opacity="0.7" transform="rotate(-45 11 11)"/>
+                    <ellipse cx="29" cy="11" rx="5" ry="7" fill="#f5c842" opacity="0.7" transform="rotate(45 29 11)"/>
+                    <ellipse cx="11" cy="29" rx="5" ry="7" fill="#fde98a" opacity="0.7" transform="rotate(45 11 29)"/>
+                    <ellipse cx="29" cy="29" rx="5" ry="7" fill="#fde98a" opacity="0.7" transform="rotate(-45 29 29)"/>
+                    <circle cx="20" cy="20" r="3" fill="#fff8e1"/>
+                  </svg>
+                </div>
+                <div class="letter-deco-line"></div>
+              </div>
+              <p class="letter-salutation" id="letter-salutation"></p>
+              <div class="letter-text" id="letter-text" aria-live="polite"></div>
+              <footer class="letter-footer">
+                <div class="letter-footer-line" aria-hidden="true"></div>
+                <p class="letter-signature" id="letter-signature"></p>
+                <button class="letter-next-button" id="btn-letter-surprise" type="button">
+                  <span>Descubrir la sorpresa</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SORPRESA ── -->
+    <section id="surprise" class="page-view" aria-label="Momento sorpresa">
+      <canvas id="surprise-canvas" aria-hidden="true"></canvas>
+      <div class="surprise-inner">
+        <div class="surprise-loading" id="surprise-loading" aria-live="polite">
+          <p class="surprise-wait">Espera...</p>
+          <p class="surprise-hint">Hay una última cosa...</p>
+          <div class="surprise-loader" aria-hidden="true">
+            <div class="loader-petal" style="--i:0"></div>
+            <div class="loader-petal" style="--i:1"></div>
+            <div class="loader-petal" style="--i:2"></div>
+            <div class="loader-petal" style="--i:3"></div>
+            <div class="loader-petal" style="--i:4"></div>
+            <div class="loader-petal" style="--i:5"></div>
+            <div class="loader-petal" style="--i:6"></div>
+            <div class="loader-petal" style="--i:7"></div>
+          </div>
+        </div>
+        <div class="surprise-reveal" id="surprise-reveal" aria-live="polite">
+          <p class="surprise-sub">Estas flores son para ti.</p>
+          <h2 class="surprise-title">Con todo mi cariño.</h2>
+          <button class="btn-ghost btn-final-link" id="btn-go-final" type="button" aria-label="Ir al final">
+            <span>Ir al final</span>
+            <span class="btn-ghost-dot" aria-hidden="true"></span>
+          </button>
+          <div class="surprise-bouquet" aria-label="Ramo premium de flores amarillas">
+            <img src="assets/images/ramo-flores-amarillas-premium-no-frame.png" alt="Ramo real de girasoles amarillos envuelto en papel negro con flores blancas, fotografiado con luz cálida" />
+          </div>
+          <div class="surprise-flowers" id="surprise-flowers" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MENSAJE FINAL ── -->
+    <section id="final" class="page-view" aria-label="Mensaje final">
+      <canvas id="final-canvas" aria-hidden="true"></canvas>
+      <div class="final-content">
+        <p class="final-line-1 reveal">Si pudiera regalarte algo más que flores...</p>
+        <p class="final-line-2 reveal">Te regalaría todos los motivos para sonreír.</p>
+        <div class="final-ornament reveal" aria-hidden="true">
+          <svg viewBox="0 0 160 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="12" x2="60" y2="12" stroke="rgba(212,160,23,0.4)" stroke-width="0.5"/>
+            <circle cx="70" cy="12" r="3" fill="rgba(212,160,23,0.5)"/>
+            <circle cx="80" cy="12" r="6" fill="rgba(212,160,23,0.7)"/>
+            <circle cx="90" cy="12" r="3" fill="rgba(212,160,23,0.5)"/>
+            <line x1="100" y1="12" x2="160" y2="12" stroke="rgba(212,160,23,0.4)" stroke-width="0.5"/>
+          </svg>
+        </div>
+        <h2 class="final-title reveal">Feliz Día de las<br /><em>Flores Amarillas</em></h2>
+        <p class="final-from reveal" id="final-from"></p>
+      </div>
+    </section>
+
+  </div><!-- /main-page -->
+
+  <!-- CONTROLES FLOTANTES -->
+  <div class="floating-controls" aria-label="Controles flotantes">
+    <button id="btn-music" class="float-btn" aria-label="Reproducir música" title="Música">
+      <svg class="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+      <div class="music-bars" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+    <button id="btn-theme" class="float-btn" aria-label="Cambiar modo noche" title="Modo noche">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+
+
+
+  <audio id="bg-music" loop preload="none">
+    <source src="audio/cancion.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
